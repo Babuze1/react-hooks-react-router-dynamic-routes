@@ -1,12 +1,23 @@
-import React from 'react'
- 
-const MovieShow = () => {
-    return (
-        <div className='List'>
-            <h2>You are inside the List Component</h2>
-            <h4>URL: localhost:3000/courses/list</h4>
-        </div>
-    )
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import { movies } from '../data';
+
+function MovieShow() {
+  const { movieId } = useParams();
+  const movie = movies[movieId];
+
+  return (
+    <div>
+      <h1>Movie Details</h1>
+      <h2>{movie.title}</h2>
+      <p>Time: {movie.time}</p>
+      <ul>
+        {movie.genres.map((genre, index) => (
+          <li key={index}>{genre}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
- 
+
 export default MovieShow;
